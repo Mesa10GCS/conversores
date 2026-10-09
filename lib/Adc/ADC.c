@@ -1,7 +1,7 @@
 #include "ADC.h"
 
-void delay_init(void) {
-        RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;
+void adc_init(void) {
+        RCC->APB2ENR |= RCC_APB2ENR_ADC1EN|RCC_APB2ENR_IOPAEN|RCC_APB2ENR_IOPBEN;
 
         ADC1->CR2|=ADC_CR2_ADON;
         for(int i=0;i<1000;i++);
@@ -17,7 +17,7 @@ void delay_init(void) {
         ADC1->CR2|=ADC_CR2_EXTSEL;
 }
 
-void adc_read(unsigned int canal){
+uint16_t adc_read(unsigned int canal){
     if(canal<8){
         GPIOA->CRL&=~(0xF<<canal*4);
     }

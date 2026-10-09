@@ -5,7 +5,7 @@
 #include "stdint.h"
 
 void adc_init(void);
-void adc_read(unsigned int canal);
+uint16_t adc_read(unsigned int canal);
 
 
 #endif
